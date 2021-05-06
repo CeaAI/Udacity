@@ -51,7 +51,9 @@ docker run -d --name postgres-student-container -p 5432:5432 onekenken/postgres-
 ### Fork and Clone the repository
 After forking this repo, on your local machine run 
 ``` 
+
 git clone  <gitrepo url>
+
 
 ```
 ### Install Dependencies
