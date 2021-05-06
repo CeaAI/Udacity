@@ -7,7 +7,7 @@ The purpose of this project is to create a Postgres database schema for  sparkif
 
 This project uses the star schema. It has 1 fact table and 4 dimensions table. The data is thus denormalized. The star schema also allows for fast aggregations. Thus the database is optimized for reads. The diagram below shows the nature of the star schema for this project
 
-![starschema]()
+![starschema](https://github.com/CeaAI/Udacity/blob/main/Data_Engineering/Postgres_ETL/sparkify.png)
 
 ## ETL PIPELINE
 
@@ -51,7 +51,9 @@ docker run -d --name postgres-student-container -p 5432:5432 onekenken/postgres-
 ### Fork and Clone the repository
 After forking this repo, on your local machine run 
 ``` 
-git clone  <gitrepo url >
+
+git clone  <gitrepo url>
+
 
 ```
 ### Install Dependencies
