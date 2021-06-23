@@ -4,20 +4,49 @@ import psycopg2
 import pandas as pd
 from sql_queries import *
 
+"""
+    This procedure processes a song file whose filepath has been provided as an arugment.
+    It extracts the song information in order to store it into the songs table.
+    Then it extracts the artist information in order to store it into the artists table.
 
+    INPUTS: 
+    * cur the cursor variable
+    * filepath the file path to the song file
+    
+
+"""
 def process_song_file(cur, filepath):
     # open song file
     df = pd.read_json(filepath, lines=True)
 
     # insert song record
-    song_data = df[["song_id","title","artist_id","year","duration"]].values[0].tolist()
+    song_data = df[
+        [
+            "song_id","title","artist_id",
+            "year","duration"
+        ]
+    ].values[0].tolist()
+    
     cur.execute(song_table_insert, song_data)
     
     # insert artist record
-    artist_data =df[["artist_id","artist_name","artist_location", "artist_longitude","artist_latitude"]].values[0].tolist()
+    artist_data =df[[
+        "artist_id","artist_name",
+        "artist_location", "artist_longitude",
+        "artist_latitude"]
+    ].values[0].tolist()
+    
     cur.execute(artist_table_insert, artist_data)
 
+"""
+    This procedure processes a log file whose filepath has been provided as an arugment.
+    It extracts the user information in order to store it into the user table.
+    Then it extracts the songplays information in order to store it into the songplay table.
 
+    INPUTS: 
+    * cur the cursor variable
+    * filepath the file path to the song file
+"""
 def process_log_file(cur, filepath):
     # open log file
     df = pd.read_json(filepath, lines=True)
@@ -29,15 +58,25 @@ def process_log_file(cur, filepath):
     t = pd.to_datetime(df["ts"], unit='ms')
     
     # insert time data records
-    time_data = [df.ts.values, t.dt.hour, t.dt.day, t.dt.week, t.dt.month, t.dt.year, t.dt.weekday]
-    column_labels = ['start_time', "hour", "day", 'week', "month", 'year', 'weekday']
-    time_df = pd.DataFrame({column_labels[i]: time_data[i] for i in range(len(time_data)) })
+    time_data = [
+        t, t.dt.hour, t.dt.day,
+        t.dt.week, t.dt.month, t.dt.year, 
+        t.dt.weekday
+    ]
+    column_labels = [
+        'start_time', "hour", "day", 'week',
+        "month", 'year', 'weekday'  
+    ]
+    time_df = pd.DataFrame(
+        {column_labels[i]: time_data[i] for i in range(len(time_data)) })
 
     for i, row in time_df.iterrows():
         cur.execute(time_table_insert, list(row))
 
     # load user table
-    user_df =df[["userId","firstName", "lastName","gender", "level"]]
+    user_df =df[
+        ["userId","firstName", "lastName","gender", "level"]
+    ]
 
     # insert user records
     for i, row in user_df.iterrows():
@@ -56,10 +95,24 @@ def process_log_file(cur, filepath):
             songid, artistid = None, None
 
         # insert songplay record
-        songplay_data =[row.ts, row.userId, row.level, songid, artistid, row.sessionId, row.location, row.userAgent]
+        songplay_data =[
+            pd.to_datetime(row.ts, unit='ms'), row.userId, row.level, 
+            songid, artistid, row.sessionId, 
+            row.location, row.userAgent
+        ]
+        
         cur.execute(songplay_table_insert, songplay_data)
 
+"""
+    This procedure processes a the files in the filepath using the function passed as an argument.
+    It first gest the files from the filepath and then applies the function to the files
 
+    INPUTS: 
+    * cur the cursor variable
+    * conn the database connection
+    * filepath the file path to the song file
+    * func the function to process the file
+"""
 def process_data(cur, conn, filepath, func):
     # get all files matching extension from directory
     all_files = []
