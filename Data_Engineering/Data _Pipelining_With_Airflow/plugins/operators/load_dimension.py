@@ -36,6 +36,7 @@ class LoadDimensionOperator(BaseOperator):
         self.log.info(f'inserting data into {self.table} table')
         formatted_sql = LoadDimensionOperator.insert_dimensions.format(
             self.table,
+            self.colums,
             self.sql
         )
         redshift.run(formatted_sql)
