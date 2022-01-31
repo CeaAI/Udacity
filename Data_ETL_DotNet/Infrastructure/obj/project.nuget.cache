@@ -1,0 +1,14 @@
+{
+  "version": 2,
+  "dgSpecHash": "D5yOjh3g0GuCCUs9n3fYfaZMWemfYQ0K9WyE6XEmIIFap0QR/E5LiDBR6822mEQgDJPcb9f1/t5DGXN41ecNJQ==",
+  "success": true,
+  "projectFilePath": "/Users/mrcea/Desktop/Udacity/Data_ETL_DotNet/Infrastructure/Infrastructure.csproj",
+  "expectedPackageFiles": [
+    "/Users/mrcea/.nuget/packages/apache.nms/1.8.0/apache.nms.1.8.0.nupkg.sha512",
+    "/Users/mrcea/.nuget/packages/apache.nms.activemq/1.8.0/apache.nms.activemq.1.8.0.nupkg.sha512",
+    "/Users/mrcea/.nuget/packages/microsoft.netcore.platforms/1.1.1/microsoft.netcore.platforms.1.1.1.nupkg.sha512",
+    "/Users/mrcea/.nuget/packages/microsoft.netcore.targets/1.1.3/microsoft.netcore.targets.1.1.3.nupkg.sha512",
+    "/Users/mrcea/.nuget/packages/system.runtime/4.3.1/system.runtime.4.3.1.nupkg.sha512"
+  ],
+  "logs": []
+}
