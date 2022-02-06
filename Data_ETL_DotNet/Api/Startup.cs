@@ -62,7 +62,7 @@ namespace Api
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapHub<ETLHub>("/streamHub");
+                endpoints.MapHub<ETLHub>("/etl");
                 endpoints.MapControllers();
             });
         }
