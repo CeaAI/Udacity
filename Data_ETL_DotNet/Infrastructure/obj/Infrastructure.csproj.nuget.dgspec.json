@@ -41,6 +41,26 @@
             "Apache.NMS.ActiveMQ": {
               "target": "Package",
               "version": "[1.8.0, )"
+            },
+            "Confluent.Kafka": {
+              "target": "Package",
+              "version": "[1.8.2, )"
+            },
+            "Confluent.SchemaRegistry": {
+              "target": "Package",
+              "version": "[1.8.2, )"
+            },
+            "Confluent.SchemaRegistry.Serdes": {
+              "target": "Package",
+              "version": "[1.3.0, )"
+            },
+            "Google.Cloud.BigQuery.V2": {
+              "target": "Package",
+              "version": "[2.3.0, )"
+            },
+            "Google.Cloud.Dataproc.V1": {
+              "target": "Package",
+              "version": "[3.4.0, )"
             }
           },
           "imports": [
